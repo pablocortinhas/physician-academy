@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Physician Academy &amp; Library — Medicina Esportiva Baseada em Evidência</title>
+<meta id="metaDesc" name="description" content="Fórum clínico gratuito e cursos de medicina do exercício e do esporte para ortopedistas, com Dr. Selênio Campos Filho.">
+<link rel="icon" type="image/svg+xml" href="assets/img/logo-mark.svg">
+<meta property="og:type" content="website">
+<meta id="ogTitle" property="og:title" content="Physician Academy &amp; Library">
+<meta id="ogDesc" property="og:description" content="Fórum clínico gratuito e cursos de medicina do exercício e do esporte para ortopedistas.">
+<meta property="og:image" content="assets/img/hero-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="#/" class="brand" aria-label="Physician Academy & Library">
+      <span class="brand-text"><b>Physician</b><span>Academy &amp; Library</span></span>
+    </a>
+
+    <nav class="mainnav" id="mainNav" aria-label="Principal">
+      <a href="#/" data-route="/" id="navHome"></a>
+      <a href="#/library" data-route="/library" id="navLibrary"></a>
+      <a href="#/academy" data-route="/academy" id="navAcademy"></a>
+      <a href="#/free" data-route="/free" id="navFree"></a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="search-wrap" id="searchWrap">
+        <label class="search-box">
+          <span class="search-ico" id="searchIco"></span>
+          <input id="searchInput" type="search" autocomplete="off">
+        </label>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <button class="icon-btn" id="cartBtn" aria-label="Carrinho"><span id="cartIco"></span><span class="badge-dot" id="cartCount" hidden></span></button>
+      <div class="user-menu">
+        <button class="icon-btn" id="bellBtn" aria-haspopup="true" aria-expanded="false" aria-label="Notificações"><span id="bellIco"></span><span class="bell-dot" id="bellDot" hidden></span></button>
+        <div class="user-dropdown" id="bellDropdown"></div>
+      </div>
+      <div class="user-menu">
+        <button class="login-btn" id="avatarBtn" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="user-dropdown" id="userDropdown"></div>
+      </div>
+      <button class="icon-btn navtoggle" id="navToggle" aria-label="Menu" aria-expanded="false"></button>
+    </div>
+  </div>
+</header>
+
+<main id="app" class="pagewrap"></main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a href="#/about" id="footAbout"></a>
+        <a href="#/terms" id="footTerms"></a>
+        <a href="#/privacy" id="footPrivacy"></a>
+      </div>
+      <div class="foot-col">
+        <a href="#/library" id="footLib"></a>
+        <a href="#/library" id="footForum"></a>
+        <a href="#/free" id="footResources"></a>
+      </div>
+      <div class="foot-col">
+        <a href="#/academy" id="footAca"></a>
+        <a href="#/academy" id="footCourses"></a>
+        <a href="#/my-courses" id="footCerts"></a>
+      </div>
+      <div class="foot-col">
+        <a href="#/contact" id="footContact"></a>
+      </div>
+      <div class="social-row" id="socialRow"></div>
+    </div>
+    <p class="foot-bottom" id="footRights"></p>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal-box" id="modalBox" role="dialog" aria-modal="true"></div></div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="cookie-bar" id="cookieBar">
+  <div class="container cookie-inner">
+    <p id="cookieText"></p>
+    <div class="cookie-actions">
+      <button class="btn btn-outline-light btn-sm" id="cookieReject"></button>
+      <button class="btn btn-primary btn-sm" id="cookieAccept"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Ordem importa: cada arquivo usa o que foi definido nos anteriores. -->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/i18n-v2.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/db.js"></script>
+<script src="assets/js/views.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
