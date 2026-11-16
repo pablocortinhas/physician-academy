@@ -144,7 +144,7 @@ function renderSearchDropdown(){
   if(q.length < 2){ closeSearchResults(); return; }
   const {topics, courses} = searchAll(q);
   const items = [
-    ...courses.slice(0,3).map(c=>`<a class="sr-item" href="#/academy/${c.slug}"><span class="sr-ico">${icon('graduation',18)}</span><span><b>${esc(L(c,'title'))}</b><span>${T('search_courses')} · ${c.price}</span></span></a>`),
+    ...courses.slice(0,3).map(c=>`<a class="sr-item" href="#/academy/${c.slug}"><span class="sr-ico">${icon('graduation',18)}</span><span><b>${esc(L(c,'title'))}</b><span>${T('search_courses')} · ${esc(c.price)}</span></span></a>`),
     ...topics.slice(0,4).map(t=>`<a class="sr-item" href="#/library/${t.slug}"><span class="sr-ico">${icon('message',18)}</span><span><b>${esc(L(t,'title'))}</b><span>${T('search_topics')} · ${esc(t.author)}</span></span></a>`),
   ];
   searchResults.innerHTML = items.length
@@ -175,7 +175,7 @@ function openCartModal(){
       <div style="margin-top:14px;">${items.map(c=>`<div class="cart-item">
         <img src="${c.img||'assets/img/course-medicina-esporte.jpg'}" alt="">
         <div class="ci-info"><b>${esc(L(c,'title'))}</b><span class="muted">${INSTRUCTOR.name}</span></div>
-        <span class="ci-price">${c.price}</span>
+        <span class="ci-price">${esc(c.price)}</span>
         <button data-rmcart="${c.slug}" aria-label="${T('admin_remove')}">${icon('trash',18)}</button>
       </div>`).join('')}</div>
       <div class="cart-total"><span>${T('cart_total')}</span><span>${formatBRL(total)}</span></div>
@@ -447,7 +447,7 @@ function bindDynamicHandlers(){
     const title=$('atTitle').value.trim(), bodyV=$('atBody').value.trim(), cat=$('atCat').value;
     if(!title || !bodyV){ $('atMsg').innerHTML = `<p class="form-msg">${T('err_fill_fields')}</p>`; return; }
     DB.addCustomTopic({slug:slugify(title), cat, tags:[T('cat_'+cat)], author:user.name, role:'Admin', title,
-      excerpt:bodyV.slice(0,160), body:`<p>${esc(bodyV)}</p>`, replies:0, views:'0', when:T('now_word'), replies_data:[], related:[], custom:true});
+      excerpt:bodyV.slice(0,160), body:`<p>${esc(bodyV).replace(/\n/g,'<br>')}</p>`, replies:0, views:'0', when:T('now_word'), replies_data:[], related:[], custom:true});
     toast(T('admin_saved')); rerender();
   });
   on('[data-rm-topic]','click',(el)=>{ DB.removeCustomTopic(el.getAttribute('data-rm-topic')); rerender(); });

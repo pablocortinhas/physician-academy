@@ -312,7 +312,7 @@ function courseCardHTML(c){
     <h3><a href="#/academy/${c.slug}">${esc(L(c,'title'))}</a></h3>
     <div class="instr-mini">${personAvatar(INSTRUCTOR.name,30)} ${INSTRUCTOR.name}</div>
     <div class="rating-line">${stars(c.rating)} ${c.rating}/5 (${c.ratingCount} ${T('reviews_word')})</div>
-    <div class="course-foot"><span>${c.hours} ${T('hours_word')} • ${T('video_lessons')}</span><span class="price-green">${c.price}</span></div>
+    <div class="course-foot"><span>${c.hours} ${T('hours_word')} • ${T('video_lessons')}</span><span class="price-green">${esc(c.price)}</span></div>
     <div class="actions">
       ${access
         ? `<a href="#/academy/${c.slug}" class="btn btn-success btn-block">${icon('playCircle',18)} ${T('btn_go_to_course')}</a>`
@@ -399,7 +399,7 @@ function renderCourse(slug){
         </div>
         <div class="course-stats">
           <span>${icon('clock',20)} ${c.hours} ${T('hours_word')}</span>
-          <span>${icon('video',20)} ${c.lessons} ${T('label_lessons')}</span>
+          <span>${icon('video',20)} ${totalLessonsOf(c)||c.lessons} ${T('label_lessons')}</span>
           <span>${icon('users',20)} ${c.students} ${T('label_students')}</span>
           <span>${icon('certificate',20)} ${T('label_certificate')}</span>
         </div>
@@ -420,7 +420,7 @@ function renderCourse(slug){
               ${pct===100 && total ? `<button class="btn btn-outline btn-block btn-sm" id="btnCertificate" data-slug="${c.slug}" style="margin-top:8px;font-size:14px;">${icon('award',17)} ${T('btn_certificate')}</button>` : ''}
             </div>
           ` : `
-            <div class="price">${c.price}</div>
+            <div class="price">${esc(c.price)}</div>
             <button class="btn btn-success btn-pill btn-block" id="btnBuyCourse" data-slug="${c.slug}">${T('btn_buy')}</button>
             <button class="btn btn-outline btn-pill btn-block" data-addcart="${c.slug}">${DB.cart().includes(c.slug)?T('in_cart'):T('btn_cart')}</button>
           `}
@@ -502,7 +502,7 @@ function learnPanel(c, others){
     ${others.length ? `
     <div class="related-head"><h3>${T('related_courses')}</h3>
       <div class="carousel-nav"><button data-carousel="-1" aria-label="‹">${icon('chevronLeft',18)}</button><button data-carousel="1" aria-label="›">${icon('chevronRight',18)}</button></div></div>
-    <div class="carousel">${others.map(o=>`<a class="mini-course" href="#/academy/${o.slug}"><img src="${o.img||'assets/img/course-medicina-esporte.jpg'}" alt="" loading="lazy"><div><b>${esc(L(o,'title'))}</b><small>${INSTRUCTOR.name}</small><div class="p">${o.price}</div></div></a>`).join('')}</div>` : ''}
+    <div class="carousel">${others.map(o=>`<a class="mini-course" href="#/academy/${o.slug}"><img src="${o.img||'assets/img/course-medicina-esporte.jpg'}" alt="" loading="lazy"><div><b>${esc(L(o,'title'))}</b><small>${INSTRUCTOR.name}</small><div class="p">${esc(o.price)}</div></div></a>`).join('')}</div>` : ''}
   </div>`;
 }
 
@@ -660,7 +660,7 @@ function renderAdmin(){
         <div id="acMsg"></div>
         <button class="btn btn-primary btn-sm" id="acSubmit">${T('admin_submit_course')}</button>
         <table class="admin-table" style="margin-top:18px;"><tbody>
-          ${courses.map(c=>`<tr><td>${esc(L(c,'title'))}</td><td>${c.price}</td><td>${customC.find(x=>x.slug===c.slug)?`<button class="btn btn-light btn-xs" data-rm-course="${c.slug}">${T('admin_remove')}</button>`:`<span class="muted">${T('admin_seed')}</span>`}</td></tr>`).join('')}
+          ${courses.map(c=>`<tr><td>${esc(L(c,'title'))}</td><td>${esc(c.price)}</td><td>${customC.find(x=>x.slug===c.slug)?`<button class="btn btn-light btn-xs" data-rm-course="${c.slug}">${T('admin_remove')}</button>`:`<span class="muted">${T('admin_seed')}</span>`}</td></tr>`).join('')}
         </tbody></table>
       </div>
       <div class="card card-pad">
